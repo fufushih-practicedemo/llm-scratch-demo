@@ -6,7 +6,7 @@ class SimpleTokenizerV1:
         self.int_to_str = {i: s for s, i in vocab.items()}
         
     def encode(self, text):
-        preprocessed = re.splite(r'([,.?_!"()\']|--|\s)', text)
+        preprocessed = re.split(r'([,.?_!"()\']|--|\s)', text)
         preprocessed = [item.strip() for item in preprocessed if item.strip()]
         ids = [self.str_to_int[s] for s in preprocessed]
         return ids
