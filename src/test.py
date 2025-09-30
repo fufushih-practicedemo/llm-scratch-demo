@@ -1,6 +1,6 @@
 import urllib.request
 import re
-from SimpleTokenizer import SimpleTokenizerV1
+from SimpleTokenizer import SimpleTokenizerV1, SimpleTokenizerV2
 
 url = ("https://raw.githubusercontent.com/rasbt/"
        "LLMs-from-scratch/main/ch02/01_main-chapter-code/"
@@ -26,3 +26,22 @@ ids = tokenizer.encode(text)
 print(ids)
 
 print(tokenizer.decode(ids))
+
+####
+
+all_tokens = sorted(set(preprocessed))
+all_tokens.extend(["<|endoftext|>", "<|unk|>"])
+vocab = {token: integer for integer, token  in enumerate(all_tokens)}
+
+# for i, item in enumerate(list(vocab.items())[-5:]):
+#     print(item)
+
+text1 = "Hello, do you like tea?"
+text2 = "In the sunlit terraces of the palace."
+text  = " <|endoftext|> ".join((text1, text2))
+print(text)
+tokenizer2 = SimpleTokenizerV2(vocab)
+ids = tokenizer2.encode(text)
+print(ids)
+
+print(tokenizer2.decode(ids))
