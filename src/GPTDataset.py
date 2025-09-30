@@ -54,3 +54,13 @@ first_batch = next(data_iter)
 print(first_batch)
 second_batch = next(data_iter)
 print(second_batch)
+# check bigger batch size 8
+print("-------------")
+dataloader2 = create_dataloader_v1(
+    raw_text, batch_size=8, max_length=4, stride=1, shuffle=False
+)
+data_iter2 = iter(dataloader2)
+first_batch2 = next(data_iter2)
+print(first_batch2)
+second_batch2 = next(data_iter2)
+print(second_batch2)
